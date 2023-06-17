@@ -1,14 +1,16 @@
-package ru.practicum.stats.server.hit.storage;
+package ru.practicum.stats.server.hit.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import ru.practicum.stats.server.hit.model.Hit;
 import ru.practicum.stats.server.hit.model.Stats;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface HitStorage extends JpaRepository<Hit, Integer> {
+@Repository
+public interface HitRepository extends JpaRepository<Hit, Integer> {
 
     @Query("SELECT new ru.practicum.stats.server.hit.model.Stats(hit.app, hit.uri, COUNT(DISTINCT hit.ip)) " +
             "FROM Hit hit " +
