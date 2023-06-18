@@ -1,4 +1,4 @@
-package ru.practicum.stats.server.hit.model;
+package ru.practicum.stats.server.hit.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
