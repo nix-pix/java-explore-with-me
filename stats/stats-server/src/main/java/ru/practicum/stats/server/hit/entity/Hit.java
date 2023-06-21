@@ -2,6 +2,8 @@ package ru.practicum.stats.server.hit.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.format.annotation.DateTimeFormat;
+import ru.practicum.stats.server.hit.util.Pattern;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,13 +23,13 @@ public class Hit {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    @Column(name = "uri", length = 140, nullable = false)
+
     private String uri;
-    @Column(name = "app", length = 140, nullable = false)
     private String app;
-    @Column(name = "ip", length = 50, nullable = false)
     private String ip;
-    @Column(name = "timestamp", nullable = false)
+
+    @DateTimeFormat(pattern = Pattern.DATE_PATTERN)
+    @Column(name = "timestamp")
     private LocalDateTime timestamp;
 
     @Override

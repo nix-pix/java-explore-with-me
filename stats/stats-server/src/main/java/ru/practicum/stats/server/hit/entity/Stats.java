@@ -1,12 +1,14 @@
 package ru.practicum.stats.server.hit.entity;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
+@Setter
 @Getter
-@RequiredArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Stats {
-    private final String uri;
-    private final String app;
-    private final Long hits;
+    private String uri;
+    private String app;
+    private Long hits;
 }
