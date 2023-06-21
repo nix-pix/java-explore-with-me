@@ -23,11 +23,9 @@ public class Hit {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-
     private String uri;
     private String app;
     private String ip;
-
     @DateTimeFormat(pattern = Pattern.DATE_PATTERN)
     @Column(name = "timestamp")
     private LocalDateTime timestamp;

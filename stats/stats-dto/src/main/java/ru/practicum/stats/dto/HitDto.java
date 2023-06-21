@@ -12,16 +12,12 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class HitDto {
     private Long id;
-
     @NotNull
     @NotBlank
     private String ip;
-
     @NotBlank
     private String app;
-
     @NotBlank
     private String uri;
-
     private String timestamp;
 }

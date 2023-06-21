@@ -20,9 +20,7 @@ public class Error {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         var error = (Error) o;
-
         if (!Objects.equals(status, error.status)) return false;
         if (!Objects.equals(reason, error.reason)) return false;
         if (!Objects.equals(message, error.message)) return false;
