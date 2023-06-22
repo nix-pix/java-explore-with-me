@@ -1,27 +1,29 @@
-package ru.practicum.main.user.exception;
+package ru.practicum.main.error;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.practicum.main.error.Error;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import ru.practicum.main.util.Pattern;
 
 import static java.time.LocalDateTime.now;
 import static java.time.format.DateTimeFormatter.ofPattern;
-import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
-public class UserErrorHandler {
+public class ErrorHandler {
 
     @ResponseBody
     @ExceptionHandler
-    @ResponseStatus(CONFLICT)
-    public Error handleNameExistException(final NameExistException exception) {
+    @ResponseStatus(BAD_REQUEST)
+    public Error handleMethodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException exception) {
         return Error.builder()
-                .status(CONFLICT.getReasonPhrase().toUpperCase())
-                .reason("This username is already exist")
+                .status(BAD_REQUEST.getReasonPhrase().toUpperCase())
+                .reason("Incorrectly made request")
                 .message(exception.getMessage())
                 .timestamp(now().format(ofPattern(Pattern.DATE_PATTERN)))
                 .build();
@@ -29,11 +31,11 @@ public class UserErrorHandler {
 
     @ResponseBody
     @ExceptionHandler
-    @ResponseStatus(CONFLICT)
-    public Error handleWrongUserException(final WrongUserException exception) {
+    @ResponseStatus(BAD_REQUEST)
+    public Error handleMethodArgumentNotValidException(final MethodArgumentNotValidException exception) {
         return Error.builder()
-                .status(CONFLICT.getReasonPhrase().toUpperCase())
-                .reason("Wrong user")
+                .status(BAD_REQUEST.getReasonPhrase().toUpperCase())
+                .reason("Incorrectly made request")
                 .message(exception.getMessage())
                 .timestamp(now().format(ofPattern(Pattern.DATE_PATTERN)))
                 .build();
@@ -42,10 +44,10 @@ public class UserErrorHandler {
     @ResponseBody
     @ExceptionHandler
     @ResponseStatus(NOT_FOUND)
-    public Error handleUserNotExistException(final UserNotExistException exception) {
+    public Error handleEmptyResultDataAccessException(final EmptyResultDataAccessException exception) {
         return Error.builder()
                 .status(NOT_FOUND.getReasonPhrase().toUpperCase())
-                .reason("This user does not exist")
+                .reason("Empty result data")
                 .message(exception.getMessage())
                 .timestamp(now().format(ofPattern(Pattern.DATE_PATTERN)))
                 .build();

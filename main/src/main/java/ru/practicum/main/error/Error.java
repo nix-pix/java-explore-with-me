@@ -1,4 +1,4 @@
-package ru.practicum.main.exception.entity;
+package ru.practicum.main.error;
 
 import lombok.*;
 
