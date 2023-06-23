@@ -2,6 +2,9 @@ package ru.practicum.stats.server.hit.entity;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+
+@Entity
 @Setter
 @Getter
 @Builder

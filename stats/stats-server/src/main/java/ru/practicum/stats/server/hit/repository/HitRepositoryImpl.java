@@ -1,6 +1,7 @@
 package ru.practicum.stats.server.hit.repository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.stats.server.hit.entity.Hit;
 import ru.practicum.stats.server.hit.entity.Stats;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Transactional(readOnly = true)
+@Repository
 public class HitRepositoryImpl implements HitRepository {
     private final EntityManager entityManager;
 
