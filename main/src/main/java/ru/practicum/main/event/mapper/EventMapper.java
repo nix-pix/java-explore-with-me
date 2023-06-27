@@ -11,7 +11,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface EventMapper {
-
     @Mapping(source = "category", target = "category.id")
     Event toEvent(SavedEventDto savedEventDto);
 

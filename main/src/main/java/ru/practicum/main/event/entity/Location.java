@@ -17,11 +17,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @Table(name = "locations", schema = "public")
 public class Location {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     @Column(name = "lat")
     private float lat;
+
     @Column(name = "lon")
     private float lon;
 

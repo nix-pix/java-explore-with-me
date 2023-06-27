@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-
     Optional<Event> findByIdAndInitiatorId(Long eventId, Long userId);
 
     Page<Event> findAllByInitiatorId(Long userId, Pageable page);

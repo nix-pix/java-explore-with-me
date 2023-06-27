@@ -20,25 +20,40 @@ import static ru.practicum.main.util.Pattern.DATE_PATTERN;
 @AllArgsConstructor
 public class LongEventDto {
     private Long id;
+
     @Size(max = 2000)
     private String annotation;
+
     private CategoryDto category;
+
     private Integer confirmedRequests;
+
     @JsonFormat(shape = STRING, pattern = DATE_PATTERN)
     private String createdOn;
+
     @Size(max = 7000)
     private String description;
+
     @JsonFormat(shape = STRING, pattern = DATE_PATTERN)
     private LocalDateTime eventDate;
+
     private ShortEventDto initiator;
+
     private Location location;
+
     private Boolean paid;
+
     private Long participantLimit;
+
     @JsonFormat(shape = STRING, pattern = DATE_PATTERN)
     private LocalDateTime publishedOn;
+
     private Boolean requestModeration;
+
     private EventState state;
+
     @Size(max = 120)
     private String title;
+
     private Long views;
 }

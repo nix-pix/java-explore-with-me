@@ -19,18 +19,28 @@ import static ru.practicum.main.util.Pattern.DATE_PATTERN;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateEventAdminDto {
+
     @Length(min = 20, max = 2000)
     private String annotation;
+
     private Long category;
+
     @Length(min = 20, max = 7000)
     private String description;
+
     @JsonFormat(shape = STRING, pattern = DATE_PATTERN)
     private LocalDateTime eventDate;
+
     private Location location;
+
     private Boolean paid;
+
     @Size(min = 3, max = 120)
     private String title;
+
     private Long participantLimit;
+
     private Boolean requestModeration;
+
     private StateActionForAdmin stateAction;
 }

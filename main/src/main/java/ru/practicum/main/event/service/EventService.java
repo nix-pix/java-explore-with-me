@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface EventService {
-
     LongEventDto saveEvent(Long userId,
                            SavedEventDto savedEventDto);
 
