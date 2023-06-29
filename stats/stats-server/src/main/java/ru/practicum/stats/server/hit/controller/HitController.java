@@ -1,30 +1,35 @@
 package ru.practicum.stats.server.hit.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.stats.dto.HitDto;
 import ru.practicum.stats.dto.StatsDto;
 import ru.practicum.stats.server.hit.service.HitService;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class HitController {
     private final HitService hitService;
 
     @PostMapping("/hit")
-    public HitDto createEndpointHit(@RequestBody HitDto endpointHitDto) {
-        return hitService.createEndpointHit(endpointHitDto);
+    @ResponseStatus(CREATED)
+    public void saveHit(@RequestBody @Valid HitDto hitDto) {
+        hitService.saveHit(hitDto);
     }
 
     @GetMapping("/stats")
-    public List<StatsDto> getEndpointHits(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
-                                          @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
-                                          @RequestParam(defaultValue = "false") boolean unique,
-                                          @RequestParam(required = false) List<String> uris) {
-        return hitService.getEndpointHits(start, end, uris, unique);
+    public List<StatsDto> getStats(@RequestParam LocalDateTime start,
+                                   @RequestParam LocalDateTime end,
+                                   @RequestParam(defaultValue = "false") boolean unique,
+                                   @RequestParam(required = false) List<String> uris) {
+        return hitService.getHits(start, end, uris, unique);
     }
 }

@@ -1,10 +1,9 @@
-package ru.practicum.stats.server.hit.model;
+package ru.practicum.main.event.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -16,26 +15,25 @@ import static javax.persistence.GenerationType.IDENTITY;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "hits", schema = "public")
-public class Hit {
+@Table(name = "locations", schema = "public")
+public class Location {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    @Column(name = "uri", length = 140, nullable = false)
-    private String uri;
-    @Column(name = "app", length = 140, nullable = false)
-    private String app;
-    @Column(name = "ip", length = 50, nullable = false)
-    private String ip;
-    @Column(name = "timestamp", nullable = false)
-    private LocalDateTime timestamp;
+
+    @Column(name = "lat")
+    private float lat;
+
+    @Column(name = "lon")
+    private float lon;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Hit that = (Hit) o;
-        return getId() != null && Objects.equals(getId(), that.getId());
+        var location = (Location) o;
+        return getId() != null && Objects.equals(getId(), location.getId());
     }
 
     @Override
