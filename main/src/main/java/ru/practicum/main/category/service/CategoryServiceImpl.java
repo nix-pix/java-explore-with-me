@@ -30,8 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public CategoryDto saveCategory(SavedCategoryDto savedCategoryDto) {
-        if (categoryRepository.existsByName(savedCategoryDto.getName()))
+        if (categoryRepository.existsByName(savedCategoryDto.getName())) {
             throw new NameExistException("Category with name " + savedCategoryDto.getName() + " cannot be saved");
+        }
         Category entity = categoryMapper.toCategory(savedCategoryDto);
         Category saved = categoryRepository.save(entity);
         return categoryMapper.toCategoryDto(saved);
