@@ -3,6 +3,7 @@ package ru.practicum.main.event.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import ru.practicum.main.category.entity.Category;
 import ru.practicum.main.event.enums.EventState;
@@ -23,6 +24,7 @@ import static ru.practicum.main.event.enums.EventState.PENDING;
 @Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "events", schema = "public")
 @NoArgsConstructor(access = PROTECTED)
 public class Event {
