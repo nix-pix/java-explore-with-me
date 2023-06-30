@@ -28,57 +28,41 @@ import static ru.practicum.main.event.enums.EventState.PENDING;
 @Table(name = "events", schema = "public")
 @NoArgsConstructor(access = PROTECTED)
 public class Event {
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-
     @Column(name = "annotation", length = 2000)
     private String annotation;
-
     @Column(name = "confirmed_requests")
     private int confirmedRequests;
-
     @Column(name = "created_on")
     private LocalDateTime createdOn;
-
     @Column(name = "description", length = 7000)
     private String description;
-
     @OneToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
     @Column(name = "event_date")
     private LocalDateTime eventDate;
-
     @OneToOne
     @JoinColumn(name = "initiator_id", referencedColumnName = "id")
     private User initiator;
-
     @OneToOne(cascade = ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
-
     @Column(name = "paid")
     private Boolean paid;
-
     @Column(name = "participant_limit")
     private int participantLimit;
-
     @Column(name = "published_on")
     private LocalDateTime publishedOn;
-
     @Column(name = "request_moderation")
     private Boolean requestModeration;
-
     @Enumerated(STRING)
     @Column(name = "state")
     private EventState state;
-
     @Column(name = "title")
     private String title;
-
     @Column(name = "views")
     private Long views;
 
